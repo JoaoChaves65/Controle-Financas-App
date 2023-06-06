@@ -31,7 +31,7 @@ const Form = () => {
                     <C.Input
                         value={amount}
                         type="number"
-                        onChange={(e) => setDesc(e.target.value)}
+                        onChange={(e) => setAmount(e.target.value)}
                     />
                 </C.InputContent>
                 <C.RadioGroup>
