@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import * as C from './styles'
-import Grid from '../Grid';
+import React, { useState } from "react";
+import Grid from "../Grid";
+import * as C from "./styles";
 
 const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
     const [desc, setDesc] = useState("");
     const [amount, setAmount] = useState("");
-    const [isExpense, setIsExpense] = useState(false);
+    const [isExpense, setExpense] = useState(false);
 
     const generateID = () => Math.round(Math.random() * 1000);
 
@@ -22,10 +22,13 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
             id: generateID(),
             desc: desc,
             amount: amount,
-            expense: isExpense
+            expense: isExpense,
         };
 
         handleAdd(transaction);
+
+        setDesc("");
+        setAmount("");
     };
 
     return (
@@ -52,20 +55,20 @@ const Form = ({ handleAdd, transactionsList, setTransactionsList }) => {
                         id="rIncome"
                         defaultChecked
                         name="group1"
-                        onChange={() => setIsExpense(!isExpense)}
+                        onChange={() => setExpense(!isExpense)}
                     />
                     <C.Label htmlFor="rIncome">Entrada</C.Label>
                     <C.Input
                         type="radio"
                         id="rExpenses"
                         name="group1"
-                        onChange={() => setIsExpense(!isExpense)}
+                        onChange={() => setExpense(!isExpense)}
                     />
                     <C.Label htmlFor="rExpenses">Saída</C.Label>
                 </C.RadioGroup>
-                <C.Button onClick={handleSave}>Adicionar</C.Button>
+                <C.Button onClick={handleSave}>ADICIONAR</C.Button>
             </C.Container>
-            <Grid itens={transactionsList} setItens={setTransactionsList}/>
+            <Grid itens={transactionsList} setItens={setTransactionsList} />
         </>
     );
 };
